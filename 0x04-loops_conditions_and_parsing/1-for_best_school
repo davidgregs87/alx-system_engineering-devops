@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Script to print out 'Best School 10 times with for loop'
 
-for (( count=1; count<11; count++ ))
+for (( count=1; count<11; count++))
 do
     echo "Best School"
 done
