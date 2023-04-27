@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Script to print out 'Best School 10 times with while loop'
+
+count=1
+while [[ $count -lt 11 ]]
+do
+    echo "Best School"
+    count=$(( count + 1 ))
+done
