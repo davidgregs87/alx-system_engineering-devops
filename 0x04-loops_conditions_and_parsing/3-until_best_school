@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Script to print out 'Best School 10 times with until loop'
-
 count=1
 until [[ $count -gt 10 ]]
 do
