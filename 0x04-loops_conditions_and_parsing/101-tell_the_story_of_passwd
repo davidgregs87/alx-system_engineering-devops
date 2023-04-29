@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-
 # The file /etc/passwd has already been covered in a previous project and you should 
 # be familiar with it. Today we will make up a story based on it.
 cat /etc/passwd > newfile
 while IFS=: read -r f1 f2 f3 f4 f5 f6 f7
 do
     echo "The user $f1 is part of the $f4 gang, lives in $f6 and rides $f7. 
-    $f3 place is protected by the passcode $f2, more info about the user here: $f5"
+    $f3's place is protected by the passcode $f2, more info about the user here: $f5"
 done < newfile
