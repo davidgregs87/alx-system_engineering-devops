@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# I am invincible!!! when receiving a SIGTERM signa
+# Make a copy of your 6-stop_me_if_you_can script, name it 67-stop_me_if_you_can, that kills the 7-highlander process instead of the trap 'echo I am invincible!!!' SIGTERM
+for (( ; ; ))
+do 
+	echo 'To infinity and beyond'
+	sleep 2
+done
