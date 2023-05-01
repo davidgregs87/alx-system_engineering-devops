@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-# Write a Bash script that stops 4-to_infinity_and_beyond process.
-pkill -15 7-highlander
+# i copied from 6-stop me if you can file
+pid='$(pgrep -f 7-highlander)'
+kill -15 '$pid'
