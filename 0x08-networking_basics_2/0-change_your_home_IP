@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Changing my home IP
-cp /etc/hosts ~/new.host
+sudo cp /etc/hosts ~/new.host
 echo "127.0.0.2 localhost" > new.host
-echo "8.8.8.8 facebook.com" >> new.host
+echo "8.8.8.8		facebook.com" >> new.host
 sudo cp -f ~/new.host /etc/hosts
