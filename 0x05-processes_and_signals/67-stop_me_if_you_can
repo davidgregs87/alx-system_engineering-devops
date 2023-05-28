@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# i copied from 6-stop me if you can file
+pid='$(pgrep -f 7-highlander)'
+kill -15 '$pid'
