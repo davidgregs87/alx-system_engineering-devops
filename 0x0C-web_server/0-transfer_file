@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Using scp command to transfer files from my local machine to my server, That is one way of publishing your website pages to your server.
+
+scp -i "$4" -o "StrictHostKeyChecking=no" "$1" "$3"@"$2":'~/'
