@@ -16,10 +16,10 @@ echo 'Hello World!' | sudo tee /var/www/html/index.html
 sudo touch /var/www/html/redirect_me
 
 # Configure nginx web server
-sudo sed -i '/location/c\
+sudo sed -i '/location/c\/
 \tlocation /redirect_me {' /etc/nginx/sites-available/default
 
-sudo sed -i '/try_files/c\
+sudo sed -i '/try_files/c\/
 \t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;' /etc/nginx/sites-available/default
 
 
