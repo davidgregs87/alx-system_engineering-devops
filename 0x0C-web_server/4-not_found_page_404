@@ -28,7 +28,9 @@ echo "server {
 	location = /404.html {
 	  root /var/www/html;
 	  internal;
-}" > /etc/nginx/sites-available/default
+}" > default
+
+sudo mv -f default /etc/nginx/sites-available/default
 
 
 # Restart the server
