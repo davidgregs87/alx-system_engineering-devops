@@ -2,7 +2,6 @@
 # This script will install nginx and 
 # Nginx should be listening on port 80
 # When querying Nginx at its root / with a GET request (requesting a page) using curl, it must return a page that contains the string Hello World!
-# Redirect page not found to resovle to a page that print 'Ceci n'est pas une page'
 
 # Update sysyem
 sudo apt-get -y update
@@ -13,15 +12,23 @@ sudo apt-get -y install nginx
 # Write 'Hello World' to the a file
 echo 'Hello World!' | sudo tee /var/www/html/index.html
 
-# Create a file redirect_me 
-sudo touch /var/www/html/redirect_me
-
-# Create a 404 file
-echo 'Ceci n'est pas une page' > notfound
+# Create a file to display 404 
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
 
 # Configure nginx web server
-sudo sed -i '/try_files/c\/
-\t\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+echo "server {
+    listen 80;
+    listen [::]:80 default_server;
+    root   /etc/nginx/html;
+    index  index.html index.htm;
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+	error_page 404 /404.html;
+	location = /404.html {
+	  root /var/www/html;
+	  internal;
+}" > /etc/nginx/sites-available/default
 
 
 # Restart the server
