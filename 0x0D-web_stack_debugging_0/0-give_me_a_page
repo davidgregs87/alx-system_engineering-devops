@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# A bash script to fix the Apache server using Docker
+sudo service apache2 restart
