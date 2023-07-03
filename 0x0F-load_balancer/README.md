@@ -3,16 +3,19 @@ Let’s improve our web stack so that there is redundancy for our web servers. T
 
 For this project, you will need to write Bash scripts to automate your work. All scripts must be designed to configure a brand new Ubuntu server to match the task requirements.
 # Resources
-Introduction to load-balancing and HAproxy
-HTTP header
-https://intranet.alxswe.com/rltoken/2VRAgtKKR9g6Xfb0xzGiSg
+* Introduction to load-balancing and HAproxy
+* HTTP header
+* Debian/Ubuntu HAProxy packages
 # Requirements
 General
-Allowed editors: vi, vim, emacs
-All your files will be interpreted on Ubuntu 16.04 LTS
-All your files should end with a new line
-A README.md file, at the root of the folder of the project, is mandatory
-All your Bash script files must be executable
-Your Bash script must pass Shellcheck (version 0.3.7) without any error
-The first line of all your Bash scripts should be exactly #!/usr/bin/env bash
-The second line of all your Bash scripts should be a comment explaining what is the script doing
+* Allowed editors: vi, vim, emacs
+* All your files will be interpreted on Ubuntu 16.04 LTS
+* All your files should end with a new line
+* A README.md file, at the root of the folder of the project, is mandatory
+* All your Bash script files must be executable
+* Your Bash script must pass Shellcheck (version 0.3.7) without any error
+* The first line of all your Bash scripts should be exactly #!/usr/bin/env bash
+* The second line of all your Bash scripts should be a comment explaining what is the script doing
+
+![qfdked8](https://github.com/davidgregs87/alx-system_engineering-devops/assets/108700012/c6dfd3c0-6c27-48a8-be07-e4fde0f5b731)
+
