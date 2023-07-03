@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# This script will install nginx and
+# Nginx should be listening on port 80
+# When querying Nginx at its root / with a GET request (requesting a page) using curl, it must return a page that contains the string Hello World!
+
+# Update sysyem
+sudo apt-get -y update
+
+# Install nginx
+sudo apt-get -y install nginx
+
+# Write 'Hello World' to the a file
+echo 'Hello World!' | sudo tee /var/www/html/index.html
+
+# Create an empty file and put a redirection
+# rule on that file path
+sudo touch /var/www/html/redirect_me
+
+# Create a file to display 404
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+
+# Configure nginx web server
+echo "server {
+    listen 80;
+    listen [::]:80 default_server;
+    root   /etc/nginx/html;
+    index  index.html index.htm;
+    location / {
+        try_files $uri $uri/ =404;
+	add_header X-Served-By $HOSTNAME;
+    }
+
+    location /redirect_me {
+        return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+
+    error_page 404 /404.html;
+    location = /404.html {
+        root /var/www/html;
+        internal;
+    }
+}" > default
+
+sudo mv -f default /etc/nginx/sites-available/default
+
+# Restart nginx server
+sudo service nginx restart
