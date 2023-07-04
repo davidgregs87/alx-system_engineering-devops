@@ -16,6 +16,9 @@ service { 'nginx':
 file_line { 'server_config':
   ensure =>  present,
   path   =>  '/etc/nginx/sites-available/default',
-  after  =>  '	try_files $uri $ur1/ =404;',
-  line   =>  'add_header X-Served-By $HOSTNAME;',
+  line               => '  try_files $uri $uri =404;',
+  after              => '  try_files $uri $uri =404;',
+  match              => '^.*try_files \$uri \$uri =404;.*$',
+  append_on_no_match => false,
+  content            => "    add_header X-Served-By \$HOSTNAME;\n",
 }
