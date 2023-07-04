@@ -17,5 +17,5 @@ file_line { 'server_config':
   ensure =>  present,
   path   =>  '/etc/nginx/sites-available/default',
   after  =>  'location / {',
-  line   =>  '\tadd_header X-Served-By $HOSTNAME;',
+  line   =>  'add_header X-Served-By $HOSTNAME;',
 }
