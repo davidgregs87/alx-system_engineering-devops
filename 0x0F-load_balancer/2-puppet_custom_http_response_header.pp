@@ -16,6 +16,6 @@ service { 'nginx':
 file_line { 'server_config':
   ensure =>  present,
   path   =>  '/etc/nginx/sites-available/default',
-  after  =>  'location / {',
+  after  =>  '	try_files $uri $ur1/ =404;',
   line   =>  'add_header X-Served-By $HOSTNAME;',
 }
