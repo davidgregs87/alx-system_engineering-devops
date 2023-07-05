@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# re-configuring nginx server to listen at port 80, and ipv4 only.
+
+sudo cp /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
