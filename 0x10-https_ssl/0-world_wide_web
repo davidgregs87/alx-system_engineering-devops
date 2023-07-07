@@ -1,52 +1,20 @@
 #!/usr/bin/env bash
-# Displays information about sub domains
+# script that will display information about subdomains
+get_record_info() {
+  local domain="$1"
+  local subdomain="$2"
 
-subdomain_info () {
-  w="www"
-  lb="lb-01"
-  w1="web-01"
-  w2="web-02"
-
-  if [ -n "$1" ] && [ -n "$2" ]
-  then
-    add=$2"."$1
-    record=$(dig "$add" | grep -A 1 "ANSWER SECTION" | grep "$1" | awk \{'print $4'\})
-    dest_ip=$(dig "$add" | grep -A 1 "ANSWER SECTION" | grep "$1" | awk \{'print $5'\})
-    echo "The subdomain $2 ia a $record record and points to $dest_ip"
+  if [[ -z "$subdomain" ]]; then
+    subdomains=("www" "lb-01" "web-01" "web-02")
   else
-    i=1
-    for i in {1..4}
-    do
-      if [ "$i" -eq 1 ]
-      then
-        sub=$w
-        add=$w"."$1
-      elif [ "$i" -eq 2 ]
-      then
-        sub=$lb
-        add=$lb"."$1
-      elif [ "$i" -eq 3 ]
-      then
-        sub=$w1
-        add=$w1"."$1
-      else
-        sub=$w2
-        add=$w2"."$1
-      fi
-      record=$(dig "$add" | grep -A 1 "ANSWER SECTION" | grep "$1" | awk \{'print $4'\})
-      dest_ip=$(dig "$add" | grep -A 1 "ANSWER SECTION" | grep "$1" | awk \{'print $5'\})
-      echo "The subdomain $sub ia a $record record and points to $dest_ip"
-      i=$((i + 1))
-    done
+    subdomains=("$subdomain")
   fi
+
+  for sub in "${subdomains[@]}"; do
+    record_type=$(dig +short "$sub.$domain" | awk '{ if ($0 ~ /^[0-9.]+$/) { print "A" } else { print $1 } }')
+    destination=$(dig +short "$sub.$domain" A | awk 'NR==1 {print $1}')
+    echo "The subdomain $sub is a $record_type record and points to $destination."
+  done
 }
 
-if [ $# -ge 1 ]
-then
-  if [ $# -gt 1 ]
-  then
-    subdomain_info "$1" "$2"
-  else
-    subdomain_info "$1"
-  fi
-fi
+get_record_info "$1" "$2"
