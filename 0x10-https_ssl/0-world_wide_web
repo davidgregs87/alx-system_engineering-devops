@@ -1,20 +1,21 @@
 #!/usr/bin/env bash
-# script that will display information about subdomains
-get_record_info() {
-  local domain="$1"
-  local subdomain="$2"
+# bash: script to display information about subdomains `DNS` records
 
-  if [[ -z "$subdomain" ]]; then
-    subdomains=("www" "lb-01" "web-01" "web-02")
-  else
-    subdomains=("$subdomain")
-  fi
-
-  for sub in "${subdomains[@]}"; do
-    record_type=$(dig +short "$sub.$domain" | awk '{ if ($0 ~ /^[0-9.]+$/) { print "A" } else { print $1 } }')
-    destination=$(dig +short "$sub.$domain" A | awk 'NR==1 {print $1}')
-    echo "The subdomain $sub is a $record_type record and points to $destination."
-  done
+dig_dns_info (){
+    dig +noall +answer "$1" | 
+        awk '
+        {split($1,a,"."); 
+        printf "The subdomain %s is a %s record and points to %s\n", a[1], $4, $5 }
+        '
 }
 
-get_record_info "$1" "$2"
+if [ "$#" -eq 1 ];
+then
+    dig_dns_info "www.$1"
+    dig_dns_info "lb-01.$1"
+    dig_dns_info "web-01.$1"
+    dig_dns_info "web-02.$1"
+elif [ "$#" -eq 2 ];
+then
+    dig_dns_info "$2.$1"
+fi
