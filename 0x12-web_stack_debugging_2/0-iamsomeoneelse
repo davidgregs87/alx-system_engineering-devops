@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# A bash script that print the passed argument to the whoami command
+
+su "$1" -c "whoami"
