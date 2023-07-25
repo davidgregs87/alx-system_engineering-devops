@@ -13,7 +13,7 @@ if __name__ == '__main__':
     emp_uname = emp_url.get('username')
 
     with open(f"{user_id}.json", "w") as jsonfile:
-        json.dump({user_id: [{"text": t.get('title'),
+        json.dump({user_id: [{"task": t.get('title'),
                               "completed": t.get("completed"),
                               "username": emp_uname} for t in todo_url]},
                   jsonfile)
