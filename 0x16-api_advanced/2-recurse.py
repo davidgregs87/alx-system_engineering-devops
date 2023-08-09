@@ -7,6 +7,7 @@
 """
 import requests
 
+
 def recurse(subreddit, hot_list=None, after=None):
     # Set a custom User-Agent to avoid Too Many Requests error
     headers = {'User-Agent': 'Custom User-Agent'}
