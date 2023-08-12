@@ -1,4 +1,5 @@
-![Alt text](postmortem.jpg)
+
+![images](https://github.com/davidgregs87/alx-system_engineering-devops/assets/108700012/82b29b5e-3503-4cd6-8d16-5b3d6e2faaf9)
 
 # Postmoterm/Incident Report based on 0x17-web_stack_debugging_3
 
