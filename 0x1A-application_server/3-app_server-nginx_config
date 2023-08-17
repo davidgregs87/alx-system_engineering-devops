@@ -16,7 +16,7 @@ server {
     }
     # another proxy to gunicorn using nginx
     location /airbnb-dynamic/number_odd_or_even/(.*) {
-        proxy_pass http://127.0.0.1:5001;
+        proxy_pass http://127.0.0.1:5001/$1;
         proxy_set_header Host $host;
     }
 
