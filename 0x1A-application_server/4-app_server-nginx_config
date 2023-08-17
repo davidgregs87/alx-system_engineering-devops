@@ -1,0 +1,43 @@
+server {
+    listen      80 default_server;
+    listen      [::]:80 default_server;
+    root        /var/www/html;
+    index       index.html index.htm;
+
+    location /hbnb_static {
+        alias /data/web_static/current;
+        index index.html index.htm;
+    }
+
+    # proxy to gunicorn using nginx:
+    location /airbnb-onepage {
+        proxy_pass http://127.0.0.1:5000;
+        proxy_set_header Host $host;
+    }
+
+    # another proxy to gunicorn using nginx
+    location /airbnb-dynamic/number_odd_or_even/ {
+        rewrite /airbnb-dynamic/(.*)$ /$1 break;
+        include proxy_params;
+        proxy_pass http://0.0.0.0:5001/number_odd_or_even/;
+    }
+
+    # using nginx as our proxy server to serve our RESTFUL-API with gunicorn
+    location /api/ {
+        include proxy_params;
+        proxy_pass http://127.0.0.1:5002;
+        proxy_set_header Host $host;
+    }
+
+    location     /redirect_me {
+        return  301 https://stackoverflow.com/;
+    }
+
+    error_page  404 /404.html;
+    location    /404 {
+        root    /var/www/html;
+        internal;
+    }
+
+    add_header X-Served-By $hostname;
+}
